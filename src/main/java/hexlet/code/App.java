@@ -23,9 +23,6 @@ public class App {
             showInitialMenu();
             try {
                 int choice = Integer.parseInt(cli.getUserInputStr());
-                if (userName == "") {
-                    userName = greetUser(cli);
-                }
                 switch (choice) {
                     case GREET_USER:
                         userName = greetUser(cli);
@@ -34,18 +31,33 @@ public class App {
                         cli.finalize();
                         return;
                     case App.EVEN:
+                        if (userName == "") {
+                            userName = greetUser(cli);
+                        }
                         Even.startGame(cli, userName);
                         break;
                     case App.CALC:
+                        if (userName == "") {
+                            userName = greetUser(cli);
+                        }
                         Calc.startGame(cli, userName);
                         break;
                     case App.GCD:
+                        if (userName == "") {
+                            userName = greetUser(cli);
+                        }
                         Gcd.startGame(cli, userName);
                         break;
                     case App.PROG:
+                        if (userName == "") {
+                            userName = greetUser(cli);
+                        }
                         Progression.startGame(cli, userName);
                         break;
                     case App.PRIME:
+                        if (userName == "") {
+                            userName = greetUser(cli);
+                        }
                         Prime.startGame(cli, userName);
                         break;
                     default:
