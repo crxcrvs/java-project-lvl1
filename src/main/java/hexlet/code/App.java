@@ -19,54 +19,52 @@ public class App {
         Cli cli = new Cli();
         String userName = "";
 
-        do {
-            showInitialMenu();
-            try {
-                int choice = Integer.parseInt(cli.getUserInputStr());
-                switch (choice) {
-                    case GREET_USER:
+        showInitialMenu();
+        try {
+            int choice = Integer.parseInt(cli.getUserInputStr());
+            switch (choice) {
+                case GREET_USER:
+                    userName = greetUser(cli);
+                    break;
+                case EXIT:
+                    cli.finalize();
+                    return;
+                case App.EVEN:
+                    if (userName == "") {
                         userName = greetUser(cli);
-                        break;
-                    case EXIT:
-                        cli.finalize();
-                        return;
-                    case App.EVEN:
-                        if (userName == "") {
-                            userName = greetUser(cli);
-                        }
-                        Even.startGame(cli, userName);
-                        break;
-                    case App.CALC:
-                        if (userName == "") {
-                            userName = greetUser(cli);
-                        }
-                        Calc.startGame(cli, userName);
-                        break;
-                    case App.GCD:
-                        if (userName == "") {
-                            userName = greetUser(cli);
-                        }
-                        Gcd.startGame(cli, userName);
-                        break;
-                    case App.PROG:
-                        if (userName == "") {
-                            userName = greetUser(cli);
-                        }
-                        Progression.startGame(cli, userName);
-                        break;
-                    case App.PRIME:
-                        if (userName == "") {
-                            userName = greetUser(cli);
-                        }
-                        Prime.startGame(cli, userName);
-                        break;
-                    default:
-                        break;
-                }
-            } catch (Exception e) {
-                System.out.println(informOnIncorrectInput());
+                    }
+                    Even.startGame(cli, userName);
+                    break;
+                case App.CALC:
+                    if (userName == "") {
+                        userName = greetUser(cli);
+                    }
+                    Calc.startGame(cli, userName);
+                    break;
+                case App.GCD:
+                    if (userName == "") {
+                        userName = greetUser(cli);
+                    }
+                    Gcd.startGame(cli, userName);
+                    break;
+                case App.PROG:
+                    if (userName == "") {
+                        userName = greetUser(cli);
+                    }
+                    Progression.startGame(cli, userName);
+                    break;
+                case App.PRIME:
+                    if (userName == "") {
+                        userName = greetUser(cli);
+                    }
+                    Prime.startGame(cli, userName);
+                    break;
+                default:
+                    break;
             }
-        } while (true);
+        } catch (Exception e) {
+            System.out.println(informOnIncorrectInput());
+        }
     }
     public static String informOnIncorrectInput() {
         return "Please enter valid number!";
