@@ -8,11 +8,4 @@ public final class Cli {
     public String getUserInputStr() {
         return sc.nextLine();
     }
-    public void finalize() {
-        sc.close();
-    }
-    public void clearConsole() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
 }

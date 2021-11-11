@@ -27,8 +27,7 @@ public class App {
                     userName = greetUser(cli);
                     break;
                 case EXIT:
-                    cli.finalize();
-                    return;
+                    break;
                 case App.EVEN:
                     if (userName == "") {
                         userName = greetUser(cli);
