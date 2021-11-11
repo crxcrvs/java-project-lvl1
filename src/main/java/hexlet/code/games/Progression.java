@@ -11,7 +11,7 @@ public final class Progression {
 
         System.out.println("What number is missing in the progression?");
 
-        String[] operations = {"+", "-", "*"};
+        String[] operations = {"+", "+", "+"};
         String[] questions = new String[Engine.NUMBER_OF_SUCCSESFUL_ANSWERS];
         String[] answers = new String[Engine.NUMBER_OF_SUCCSESFUL_ANSWERS];
 
