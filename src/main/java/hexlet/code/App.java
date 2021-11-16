@@ -23,13 +23,13 @@ public class App {
 
         App.showInitialMenu();
 
+        System.out.print("Your choice: ");
+        String choice = sc.nextLine();
+
         String userName = Cli.greetUser(sc);
 
-        System.out.print("Your choice: ");
-
-        switch (sc.nextLine()) {
+        switch (choice) {
             case App.GREET_USER:
-                userName = Cli.greetUser(sc);
                 break;
             case App.EXIT:
                 break;
