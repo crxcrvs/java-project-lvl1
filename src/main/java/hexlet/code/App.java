@@ -1,5 +1,7 @@
 package hexlet.code;
 
+import java.util.Scanner;
+
 import hexlet.code.games.Calc;
 import hexlet.code.games.Even;
 import hexlet.code.games.Gcd;
@@ -7,74 +9,52 @@ import hexlet.code.games.Prime;
 import hexlet.code.games.Progression;
 
 public class App {
-    public static final int EXIT = 0;
-    public static final int GREET_USER = 1;
-    public static final int EVEN = 2;
-    public static final int CALC = 3;
-    public static final int GCD = 4;
-    public static final int PROG = 5;
-    public static final int PRIME = 6;
+    public static final String EXIT = "0";
+    public static final String GREET_USER = "1";
+    public static final String EVEN = "2";
+    public static final String CALC = "3";
+    public static final String GCD = "4";
+    public static final String PROG = "5";
+    public static final String PRIME = "6";
 
     public static void main(String[] args) {
-        Cli cli = new Cli();
-        String userName = "";
 
-        showInitialMenu();
-        try {
-            int choice = Integer.parseInt(cli.getUserInputStr());
-            switch (choice) {
-                case GREET_USER:
-                    userName = greetUser(cli);
-                    break;
-                case EXIT:
-                    break;
-                case App.EVEN:
-                    if (userName == "") {
-                        userName = greetUser(cli);
-                    }
-                    Even.startGame(cli, userName);
-                    break;
-                case App.CALC:
-                    if (userName == "") {
-                        userName = greetUser(cli);
-                    }
-                    Calc.startGame(cli, userName);
-                    break;
-                case App.GCD:
-                    if (userName == "") {
-                        userName = greetUser(cli);
-                    }
-                    Gcd.startGame(cli, userName);
-                    break;
-                case App.PROG:
-                    if (userName == "") {
-                        userName = greetUser(cli);
-                    }
-                    Progression.startGame(cli, userName);
-                    break;
-                case App.PRIME:
-                    if (userName == "") {
-                        userName = greetUser(cli);
-                    }
-                    Prime.startGame(cli, userName);
-                    break;
-                default:
-                    break;
-            }
-        } catch (Exception e) {
-            System.out.println(informOnIncorrectInput());
+        Scanner sc = new Scanner(System.in);
+
+        App.showInitialMenu();
+
+        String userName = Cli.greetUser(sc);
+
+        System.out.print("Your choice: ");
+
+        switch (sc.nextLine()) {
+            case App.GREET_USER:
+                userName = Cli.greetUser(sc);
+                break;
+            case App.EXIT:
+                break;
+            case App.EVEN:
+                Even.startGame(sc, userName);
+                break;
+            case App.CALC:
+                Calc.startGame(sc, userName);
+                break;
+            case App.GCD:
+                Gcd.startGame(sc, userName);
+                break;
+            case App.PROG:
+                Progression.startGame(sc, userName);
+                break;
+            case App.PRIME:
+                Prime.startGame(sc, userName);
+                break;
+            default:
+                break;
         }
+
+        sc.close();
     }
-    public static String informOnIncorrectInput() {
-        return "Please enter valid number!";
-    }
-    public static String greetUser(Cli cli) {
-        System.out.println("Welcome to the Brain Games!");
-        System.out.println("May I have your name?");
-        String userName = cli.getUserInputStr();
-        System.out.println("Hello, " + userName + "!");
-        return userName;
-    }
+
     public static void showInitialMenu() {
         System.out.println("Please enter the game number and press Enter.");
         System.out.println(GREET_USER + " - " + "Greet");
@@ -84,6 +64,5 @@ public class App {
         System.out.println(PROG + " - " + "Progression");
         System.out.println(PRIME + " - " + "Prime");
         System.out.println(EXIT + " - " + "Exit");
-        System.out.print("Your choice: ");
     }
 }

@@ -1,12 +1,19 @@
 package hexlet.code.games;
 
-import hexlet.code.Cli;
+import java.util.Scanner;
+
 import hexlet.code.Engine;
+import hexlet.code.Utils;
 
 
 public final class Progression {
 
-    public static void startGame(Cli cli, String userName) {
+    public static final int LOWER_SEQ_LENGTH = 5;
+    public static final int UPPER_SEQ_LENGTH = 10;
+    public static final int LOWER_SEQ_STEP = 2;
+    public static final int UPPER_SEQ_STEP = 4;
+
+    public static void startGame(Scanner sc, String userName) {
         int round = 0;
 
         System.out.println("What number is missing in the progression?");
@@ -22,7 +29,7 @@ public final class Progression {
             round += 1;
         } while (round < Engine.NUMBER_OF_SUCCSESFUL_ANSWERS);
 
-        Engine.startGame(questions, answers, userName, cli);
+        Engine.startGame(questions, answers, userName, sc);
     }
 
     private static String[] buildQAPair(String[] operations) {
@@ -30,7 +37,7 @@ public final class Progression {
 
         int[] seq = buildSequence(operations);
 
-        int hiddenElmIndex = Engine.randomNumberFromInterval(1, seq.length) - 1;
+        int hiddenElmIndex = Utils.randomNumberFromInterval(1, seq.length) - 1;
         for (int i = 0; i < seq.length; i++) {
             String tmp = hiddenElmIndex == i ? ".." : Integer.toString(seq[i]);
             if (i == 0) {
@@ -46,10 +53,10 @@ public final class Progression {
 
     private static int[] buildSequence(String[] operations) {
 
-        int seqOper = Engine.randomNumberFromInterval(0, Engine.NUMBER_OF_OPERATIONS);
-        int seqStep = Engine.randomNumberFromInterval(Engine.LOWER_SEQ_STEP, Engine.UPPER_SEQ_STEP);
-        int seqLength = Engine.randomNumberFromInterval(Engine.LOWER_SEQ_LENGTH, Engine.UPPER_SEQ_LENGTH);
-        int seqStart = Engine.randomNumberFromInterval(Engine.LOWER_BOUNDARY, Engine.UPPER_BOUNDARY);
+        int seqOper = Utils.randomNumberFromInterval(0, operations.length);
+        int seqStep = Utils.randomNumberFromInterval(LOWER_SEQ_STEP, UPPER_SEQ_STEP);
+        int seqLength = Utils.randomNumberFromInterval(LOWER_SEQ_LENGTH, UPPER_SEQ_LENGTH);
+        int seqStart = Utils.randomNumberFromInterval(Utils.LOWER_BOUNDARY, Utils.UPPER_BOUNDARY);
 
         int[] seq = new int[seqLength];
 

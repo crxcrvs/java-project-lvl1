@@ -1,11 +1,13 @@
 package hexlet.code.games;
 
-import hexlet.code.Cli;
+import java.util.Scanner;
+
 import hexlet.code.Engine;
+import hexlet.code.Utils;
 
 public final class Prime {
 
-    public static void startGame(Cli cli, String userName) {
+    public static void startGame(Scanner sc, String userName) {
         int round = 0;
 
         System.out.println("Answer yes if given number is prime. Otherwise answer 'no'.");
@@ -14,13 +16,13 @@ public final class Prime {
         String[] answers = new String[Engine.NUMBER_OF_SUCCSESFUL_ANSWERS];
 
         do {
-            int tmp = Engine.randomNumberFromInterval(Engine.LOWER_BOUNDARY, Engine.UPPER_BOUNDARY);
+            int tmp = Utils.randomNumberFromInterval(Utils.LOWER_BOUNDARY, Utils.UPPER_BOUNDARY);
             questions[round] = Integer.toString(tmp);
             answers[round] = isPrime(tmp) ? "yes" : "no";
             round += 1;
         } while (round < Engine.NUMBER_OF_SUCCSESFUL_ANSWERS);
 
-        Engine.startGame(questions, answers, userName, cli);
+        Engine.startGame(questions, answers, userName, sc);
     }
     private static boolean isPrime(int number) {
         if (number == 1) {
