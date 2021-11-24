@@ -10,7 +10,7 @@ public final class Prime {
     public static void startGame(Scanner sc, String userName) {
         int round = 0;
 
-        System.out.println("Answer yes if given number is prime. Otherwise answer 'no'.");
+        String gameRule = "Answer yes if given number is prime. Otherwise answer 'no'.";
 
         String[] questions = new String[Engine.NUMBER_OF_SUCCSESFUL_ANSWERS];
         String[] answers = new String[Engine.NUMBER_OF_SUCCSESFUL_ANSWERS];
@@ -22,7 +22,7 @@ public final class Prime {
             round += 1;
         } while (round < Engine.NUMBER_OF_SUCCSESFUL_ANSWERS);
 
-        Engine.startGame(questions, answers, userName, sc);
+        Engine.startGame(questions, answers, userName, gameRule, sc);
     }
     private static boolean isPrime(int number) {
         if (number == 1) {

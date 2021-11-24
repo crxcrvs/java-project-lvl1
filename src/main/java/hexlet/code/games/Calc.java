@@ -7,48 +7,47 @@ import hexlet.code.Utils;
 
 public final class Calc {
 
-    public static void startGame(Scanner sc, String userName) {
-        int round = 0;
-        String[] operations = {"+", "-", "*"};
+    private static final String[] OPERATIONS = {"+", "-", "*"};
 
-        System.out.println("What is the result of the expression?");
+    public static void startGame(Scanner sc, String userName) {
+
+        String gameRule = "What is the result of the expression?";
 
         String[] questions = new String[Engine.NUMBER_OF_SUCCSESFUL_ANSWERS];
         String[] answers = new String[Engine.NUMBER_OF_SUCCSESFUL_ANSWERS];
 
-        do {
-            String[] pairQA = buildQAPair(operations);
-            questions[round] = pairQA[0];
-            answers[round] = pairQA[1];
-            round += 1;
-        } while (round < Engine.NUMBER_OF_SUCCSESFUL_ANSWERS);
+        for (int round = 0; round < Engine.NUMBER_OF_SUCCSESFUL_ANSWERS; round++) {
+            int numberA = Utils.randomNumberFromInterval(Utils.LOWER_BOUNDARY, Utils.UPPER_BOUNDARY);
+            int numberB = Utils.randomNumberFromInterval(Utils.LOWER_BOUNDARY, Utils.UPPER_BOUNDARY);
+            int operationIndex = Utils.randomNumberFromInterval(0, OPERATIONS.length);
 
-        Engine.startGame(questions, answers, userName, sc);
+            questions[round] = buildQuestion(numberA, numberB, OPERATIONS[operationIndex]);
+            answers[round] = findAnswer(numberA, numberB, OPERATIONS[operationIndex]);
+        }
+
+        Engine.startGame(questions, answers, userName, gameRule, sc);
 
     }
-
-    private static String[] buildQAPair(String[] operations) {
-        String[] result = new String[2];
-
-        int randomNumberA = Utils.randomNumberFromInterval(Utils.LOWER_BOUNDARY, Utils.UPPER_BOUNDARY);
-        int randomNumberB = Utils.randomNumberFromInterval(Utils.LOWER_BOUNDARY, Utils.UPPER_BOUNDARY);
-        int operation = Utils.randomNumberFromInterval(0, operations.length);
-
-        result[0] = randomNumberA + " " + operations[operation] + " " + randomNumberB;
-
-        switch (operations[operation]) {
+    private static String findAnswer(int numberA, int numberB, String operation) {
+        String result = "";
+        switch (operation) {
             case "+":
-                result[1] = Integer.toString(randomNumberA + randomNumberB);
+                result = Integer.toString(numberA + numberB);
                 break;
             case "-":
-                result[1] = Integer.toString(randomNumberA - randomNumberB);
+                result = Integer.toString(numberA - numberB);
                 break;
             case "*":
-                result[1] = Integer.toString(randomNumberA * randomNumberB);
+                result = Integer.toString(numberA * numberB);
                 break;
             default:
                 break;
         }
         return result;
+
     }
+    private static String buildQuestion(int numberA, int numberB, String operation) {
+        return numberA + " " + operation + " " + numberB;
+    }
+
 }
