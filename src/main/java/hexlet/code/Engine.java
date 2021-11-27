@@ -5,9 +5,10 @@ import java.util.Scanner;
 public class Engine {
 
     public static final int NUMBER_OF_SUCCSESFUL_ANSWERS = 3;
+    private static Scanner sc = new Scanner(System.in);
 
-    public static void startGame(String[] questions, String[] answers, String userName, String gameRule, Scanner sc) {
-
+    public static void startGame(String[] questions, String[] answers, String gameRule) {
+        String userName = greetUser();
         System.out.println(gameRule);
 
         for (int round = 0; round < questions.length; round++) {
@@ -22,10 +23,18 @@ public class Engine {
             }
         }
         System.out.println("Congratulations, " + userName + "!\n");
+        sc.close();
     }
     public static String buildIncorrectAnswer(String userAnswer, String correctAnswer, String userName) {
         String templ = "%s is wrong answer ;(. Correct answer was %s.\n";
         templ += "Let's try again, %s!";
         return String.format(templ, userAnswer, correctAnswer, userName);
+    }
+    public static String greetUser() {
+        System.out.println("Welcome to the Brain Games!");
+        System.out.println("May I have your name?");
+        String userName = sc.nextLine();
+        System.out.println("Hello, " + userName + "!");
+        return userName;
     }
 }

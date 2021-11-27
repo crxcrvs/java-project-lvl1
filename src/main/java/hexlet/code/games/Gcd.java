@@ -1,15 +1,13 @@
 package hexlet.code.games;
 
-import java.util.Scanner;
-
 import hexlet.code.Engine;
 import hexlet.code.Utils;
 
 public final class Gcd {
 
-    public static void startGame(Scanner sc, String userName) {
+    private static final String GAMERULE = "Find the greatest common divisor of given numbers.";
 
-        String gameRule = "Find the greatest common divisor of given numbers.";
+    public static void startGame() {
 
         String[] questions = new String[Engine.NUMBER_OF_SUCCSESFUL_ANSWERS];
         String[] answers = new String[Engine.NUMBER_OF_SUCCSESFUL_ANSWERS];
@@ -23,7 +21,7 @@ public final class Gcd {
             answers[round] = calcGCD(numberA, numberB);
         }
 
-        Engine.startGame(questions, answers, userName, gameRule, sc);
+        Engine.startGame(questions, answers, GAMERULE);
     }
 
     private static String calcGCD(int numberA, int numberB) {

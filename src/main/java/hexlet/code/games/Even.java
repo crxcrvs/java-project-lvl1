@@ -1,16 +1,13 @@
 package hexlet.code.games;
 
-import java.util.Scanner;
-
 import hexlet.code.Engine;
 import hexlet.code.Utils;
 
 public final class Even {
 
+    private static final String GAMERULE = "Answer 'yes' if the number is even, otherwise answer 'no'.";
 
-    public static void startGame(Scanner sc, String userName) {
-
-        String gameRule = "Answer 'yes' if the number is even, otherwise answer 'no'.";
+    public static void startGame() {
 
         String[] questions = new String[Engine.NUMBER_OF_SUCCSESFUL_ANSWERS];
         String[] answers = new String[Engine.NUMBER_OF_SUCCSESFUL_ANSWERS];
@@ -21,7 +18,7 @@ public final class Even {
             answers[round] = isEven(random) ? "yes" : "no";
         }
 
-        Engine.startGame(questions, answers, userName, gameRule, sc);
+        Engine.startGame(questions, answers, GAMERULE);
     }
     private static boolean isEven(int number) {
         return number % 2 == 0;

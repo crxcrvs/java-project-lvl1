@@ -26,27 +26,26 @@ public class App {
         System.out.print("Your choice: ");
         String choice = sc.nextLine();
 
-        String userName = Cli.greetUser(sc);
-
         switch (choice) {
             case App.GREET_USER:
+                Cli.greetUser();
                 break;
             case App.EXIT:
                 break;
             case App.EVEN:
-                Even.startGame(sc, userName);
+                Even.startGame();
                 break;
             case App.CALC:
-                Calc.startGame(sc, userName);
+                Calc.startGame();
                 break;
             case App.GCD:
-                Gcd.startGame(sc, userName);
+                Gcd.startGame();
                 break;
             case App.PROG:
-                Progression.startGame(sc, userName);
+                Progression.startGame();
                 break;
             case App.PRIME:
-                Prime.startGame(sc, userName);
+                Prime.startGame();
                 break;
             default:
                 break;
