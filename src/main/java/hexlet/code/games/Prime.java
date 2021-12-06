@@ -13,9 +13,9 @@ public final class Prime {
         String[] answers = new String[Engine.NUMBER_OF_SUCCSESFUL_ANSWERS];
 
         for (int round = 0; round < Engine.NUMBER_OF_SUCCSESFUL_ANSWERS; round++) {
-            int tmp = Utils.randomNumberFromInterval(Utils.LOWER_BOUNDARY, Utils.UPPER_BOUNDARY);
-            questions[round] = Integer.toString(tmp);
-            answers[round] = isPrime(tmp) ? "yes" : "no";
+            int prime = Utils.randomNumberFromInterval(Utils.LOWER_BOUNDARY, Utils.UPPER_BOUNDARY);
+            questions[round] = Integer.toString(prime);
+            answers[round] = isPrime(prime) ? "yes" : "no";
         }
 
         Engine.startGame(questions, answers, GAMERULE);
